@@ -1,0 +1,44 @@
+export MARKETLIVE_HOME=~/marketlive
+
+export USERNAME=${USER}
+
+export ANT_HOME=$MARKETLIVE_HOME/tools/apache-ant-1.7.1
+export ANT_ML_TOOLS=$MARKETLIVE_HOME/tools/cs/build/
+export ANT_PWD=CHANGEME
+export ANT_USR=CHANGEME
+export ANT_OPTS='-Xmx6g -XX:MaxPermSize=256m'
+export JAVA_OPTS='-Xmx6g'
+export EC2_HOME=/usr/local/ec2-api-tools-1.7.5.1
+
+export WSIMPORT_OPTS=-Xmx512M
+
+# jenv support
+#export PATH=$HOME/.jenv/bin:$PATH
+#eval "$(jenv init -)"
+
+export MAVEN_HOME=/usr/local/Cellar/maven/3.3.9/libexec/
+export MAVEN_OPTS='-Xmx1536m -XX:MaxPermSize=256m'
+
+#export JAVA_TOOL_OPTIONS='-Djava.awt.headless=true'
+#export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)
+#export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+
+export MARKETLIVE_LIBRARIES=$MARKETLIVE_HOME/libraries
+export MARKETLIVE_PROFILE=registry
+export MARKETLIVE_REGISTRY_TOOLS=$MARKETLIVE_HOME/tools/andromeda/registry
+export MARKETLIVE_RELEASE=$MARKETLIVE_HOME/release
+export MARKETLIVE_SITES=$MARKETLIVE_HOME/sites
+export MARKETLIVE_VERSION=16.1.0.18
+
+export MONGO_VERSION=2.6.12
+export MONGO_HOME=${MARKETLIVE_HOME}/mongo/${MONGO_VERSION}
+
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH:$ANT_HOME/bin:/usr/local/Cellar/git/1.9.1/bin:$EC2_HOME/bin
+export PATH=$MARKETLIVE_HOME/apache-ant-1.7.1/bin:$PATH
+export PATH=$MARKETLIVE_HOME/mongo/2.6.12/bin:$PATH
+
+export TERM=vt100
+
+PS1=\\u@\\h:
+ulimit -n 4096

@@ -1,0 +1,51 @@
+Instructions to setup machine:
+- open a terminal
+- cd to directory where the file init.sh (in this folder) lives
+- run the following command:
+	./init.sh
+
+
+* In general, in each step of the script, just type 'y' to accept
+and continue.
+
+
+The script will now walk you through the following steps:
+
+- Step 1: Setup bash_profile
+	- ** Note: this will overwrite your existing bash_profile
+
+- Step 2: Install homebrew and required packages
+	- You may get a pop up asking to install XCode, accept this and
+		go through the installation process
+
+- Step 3: Download marketlive files
+
+- Step 4: Setup mongo
+
+- Step 5: Set a new master password
+	- This is for maven and can be anything you want
+
+- Step 6: Set a new nexus username/password
+	- This step is to gain access to the maven repositories
+	- The user/pass combo is the same user and pass used
+		to log into the VPN through tunnelblick
+	- It will look something similar to:
+		Username: ml.amohades
+		Password: Yaiq22r!
+
+- Step 7: Setup SSH key:
+	- During development, you will need to ssh into virtualbox frequently
+	- This command is run once manually so that the SSH key can be added to the list
+		of permanently known hosts
+	- When prompted if you want to add the host, type 'p' to add it permanently
+	- IMPORTANT: If virtualbox is not installed and running, this step will timeout
+		and fail. You can always come back and do this step later after setting up
+		virtualbox.
+
+
+After all of these steps complete without errors, your machine is ready
+
+
+** Note: if you need to run any step of the script again, you can just
+run ./init.sh again and skip the steps you already completed by typing
+'n' for no. 

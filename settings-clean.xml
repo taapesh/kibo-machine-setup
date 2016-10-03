@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <!-- Enable short-hand for plugins/goals in the following groups -->
+    <pluginGroups>
+        <pluginGroup>com.marketlive.maven.plugins</pluginGroup>
+        <pluginGroup>org.codehaus.mojo</pluginGroup>
+        <pluginGroup>org.glassfish.maven.plugin</pluginGroup>
+    </pluginGroups>
+
+    <profiles>
+        <profile>
+
+            <id>nexus</id>
+            <!--Enable snapshots for the built in central repo to direct -->
+            <!--all requests to nexus via the mirror -->
+            <repositories>
+                <repository>
+                    <id>thirdparty</id>
+                    <name>3rd party</name>
+                    <url>https://maven.aws.marketlive.com/nexus/content/repositories/thirdparty</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+
+                <repository>
+                    <id>ml-snapshots</id>
+                    <url>https://maven.aws.marketlive.com/nexus/content/repositories/ml-snapshots/</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+
+                <repository>
+                    <id>ml-public-release</id>
+                    <name>MarketLive Public Release</name>
+                    <url>https://maven.aws.marketlive.com/nexus/content/groups/public/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+
+            <!-- Use the latest snapshot for MarketLive plugins -->
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>ml6-snapshots</id>
+                    <name>MarketLive Snapshots</name>
+                    <url>https://maven.aws.marketlive.com/nexus/content/repositories/ml6-snapshots</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </pluginRepository>
+
+                <pluginRepository>
+                    <id>maven.java.net</id>
+                    <name>Java.net Maven2 Repository</name>
+                    <url>http://download.java.net/maven/2</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+
+    <activeProfiles>
+        <activeProfile>nexus</activeProfile>
+    </activeProfiles>
+
+    <servers>
+        <server>
+            <id>thirdparty</id>
+            <username>{mlUser}</username>
+            <password>{mlPass}</password>
+        </server>
+
+        <server>
+            <id>qa-releases</id>
+            <username>{mlUser}</username>
+            <password>{mlPass}</password>
+        </server>
+
+        <server>
+            <id>ml-snapshots</id>
+            <username>{mlUser}</username>
+            <password>{mlPass}</password>
+        </server>
+
+        <server>
+            <id>ml-public-release</id>
+            <username>{mlUser}</username>
+            <password>{mlPass}</password>
+        </server>
+    </servers>
+
+</settings>
