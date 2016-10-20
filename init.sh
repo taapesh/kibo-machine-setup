@@ -10,7 +10,7 @@ read -s ML_PASS
 echo
 
 # Setup .bash_profile
-read -p "Setup bash profile? [y/n] " -r
+read -p "Setup bash profile? WARNING: This will overwrite your existing bash profile! [y/n] " -r
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 	cat bash_profile.txt > ~/.bash_profile
@@ -126,14 +126,14 @@ then
 fi
 echo
 
-read -p "Set up virtualbox SSH key? [y/n] " -r
+read -p "Set up virtualbox SSH key? Note: virtualbox must be running for this step to run successfully. [y/n] " -r
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 	ssh -o ConnectTimeout=6 root@192.168.56.101 exit
 fi
 echo
 
-read -p "Set up psadmin SSH key? [y/n] " -r
+read -p "Set up psadmin SSH key? Note: You must be connected to mc2 VPN for this step to run successfully. [y/n] " -r
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 	ssh -o ConnectTimeout=6 $ML_USER@psadmin.mc2.mcloud.local exit
