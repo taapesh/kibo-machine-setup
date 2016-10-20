@@ -3,6 +3,12 @@
 # Preserve pwd for later
 BASE_DIR=$(pwd)
 
+echo -n "ml.username: "
+read ML_USER
+echo -n "ml password: "
+read -s ML_PASS
+echo
+
 # Setup .bash_profile
 read -p "Setup bash profile? [y/n] " -r
 if [[ $REPLY =~ ^[Yy]$ ]]
@@ -112,23 +118,25 @@ echo
 read -p "Set a new nexus username/password? [y/n] " -r
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-	echo -n "Nexus server username (ml.username): "
-	read NEXUS_USER
-	echo "Nexus username set"
-	echo $NEXUS_USER
-	echo -n "Nexus server password: "
-	read -s NEXUS_PASS
-	NEXUS_PASS="$(mvn --encrypt-password NEXUS_PASS | sed 's/\//\\\//g')"
-	echo "Nexus password set"
+	echo "Encrypting ml password..."
+	ML_PASS="$(mvn --encrypt-password ML_PASS | sed 's/\//\\\//g')"
 	echo $NEXUS_PASS
-	cat $BASE_DIR/settings-clean.xml | sed -e "s/{mlUser}/${NEXUS_USER}/" | sed -e "s/{mlPass}/${NEXUS_PASS}/" > ~/.m2/settings.xml
+	echo "Done"
+	cat $BASE_DIR/settings-clean.xml | sed -e "s/{mlUser}/${ML_USER}/" | sed -e "s/{mlPass}/${ML_PASS}/" > ~/.m2/settings.xml
 fi
 echo
 
-read -p "Set up SSH key? [y/n] " -r
+read -p "Set up virtualbox SSH key? [y/n] " -r
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 	ssh -o ConnectTimeout=6 root@192.168.56.101 exit
+fi
+echo
+
+read -p "Set up psadmin SSH key? [y/n] " -r
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+	ssh -o ConnectTimeout=6 $ML_USER@psadmin.mc2.mcloud.local exit
 fi
 echo
 
